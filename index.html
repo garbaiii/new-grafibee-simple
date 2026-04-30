@@ -1,17 +1,477 @@
 <!doctype html>
-<html lang="hu">
+<html lang="hu" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/grafibee_logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Grafibee - modern, gyors es reszponziv weboldalak fejlesztese es tervezese uzleti eredmenyekre optimalizalva."
     />
     <title>grafibee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand js-nav" data-href="/">
+          <span class="nav-logo-wrap" aria-hidden="true">
+            <img src="public/grafibee_logo.svg" alt="" class="nav-logo-img" />
+          </span>
+          <span>grafibee<span class="text-primary">.</span></span>
+        </a>
+
+        <div class="nav-links-desktop">
+          <a href="/#work" class="nav-link js-nav" data-href="/#work">Munkáink</a>
+          <a href="/#services" class="nav-link js-nav" data-href="/#services">Szolgáltatások</a>
+          <a href="/#contact" class="nav-link js-nav" data-href="/#contact">Kapcsolat</a>
+        </div>
+
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="mobile-menu-btn"
+          aria-label="Mobil menü megnyitása"
+          aria-expanded="false"
+        >
+          <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu" hidden>
+        <div class="mobile-menu-inner">
+          <a href="/#home" class="nav-link js-nav" data-href="/#home">Főoldal</a>
+          <a href="/#work" class="nav-link js-nav" data-href="/#work">Munkáink</a>
+          <a href="/#services" class="nav-link js-nav" data-href="/#services">Szolgáltatások</a>
+          <a href="/#contact" class="nav-link js-nav" data-href="/#contact">Kapcsolat</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== MAIN ===================== -->
+    <main id="main-content">
+
+      <!-- ---- HOME PAGE ---- -->
+      <div id="page-home">
+
+        <!-- Hero -->
+        <section id="home" class="hero">
+          <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1>
+                Nem csak <span class="text-muted">kódolunk</span>.<br />
+                <span class="text-primary">Élményt építünk.</span>
+              </h1>
+              <p class="hero-subtitle">
+                Modern, reszponzív és letisztult weboldalak, amelyek nem csak jól néznek ki,
+                hanem üzleti eredményeket is hoznak.
+              </p>
+              <div class="hero-buttons">
+                <button type="button" class="btn-primary" id="btn-hero-contact">
+                  Induljunk el
+                </button>
+                <button type="button" class="btn-outline" id="btn-hero-work">
+                  Munkáink
+                </button>
+              </div>
+            </div>
+
+            <div class="hero-code-card" aria-hidden="true">
+              <div class="code-card-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <pre class="code-pre"><code><span class="code-kw">interface</span> Project {
+  vision: <span class="code-kw">string</span>;
+  code: <span class="code-str">'clean'</span> | <span class="code-str">'robust'</span>;
+}
+
+<span class="code-comment">// grafibee - a minoseg nem alkuszik</span></code></pre>
+            </div>
+          </div>
+
+          <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-mouse">
+              <div class="scroll-dot"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Work -->
+        <section id="work" class="section work-section">
+          <div class="section-inner">
+            <h2 class="section-title">
+              Eddigi <span class="text-primary">munkáink</span>
+            </h2>
+            <p class="section-subtitle">
+              Itt láthatod néhány korábbi munkánkat, amelyekben gyors, tiszta és skálázható
+              frontend megoldásokat szállítottunk.
+            </p>
+          </div>
+
+          <div class="carousel-viewport" id="work-carousel">
+            <div class="carousel-track" id="carousel-track">
+
+              <article class="work-card" data-card="AutoLuce">
+                <a
+                  href="https://autoluce.hu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="AutoLuce referencia megnyitása"
+                  class="work-card-link"
+                >
+                  <div class="work-card-image-wrap">
+                    <img
+                      src="munkak/autoluce.png"
+                      alt="AutoLuce referencia"
+                      class="work-card-img"
+                    />
+                    <div class="work-card-overlay" aria-hidden="true"></div>
+                  </div>
+                  <div class="work-card-body">
+                    <div>
+                      <h3 class="work-card-title">AutoLuce</h3>
+                      <p class="work-card-desc">
+                        Autókozmetikai és tisztasági márka modern, bizalmat építő arculattal.
+                      </p>
+                    </div>
+                    <span class="work-card-cta">Megnyitás</span>
+                  </div>
+                </a>
+              </article>
+
+              <article class="work-card" data-card="ZoraPlus">
+                <a
+                  href="https://zorapluskft.hu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Zora Plus Kft referencia megnyitása"
+                  class="work-card-link"
+                >
+                  <div class="work-card-image-wrap">
+                    <img
+                      src="munkak/zorapluskft.png"
+                      alt="Zora Plus Kft referencia"
+                      class="work-card-img"
+                    />
+                    <div class="work-card-overlay" aria-hidden="true"></div>
+                  </div>
+                  <div class="work-card-body">
+                    <div>
+                      <h3 class="work-card-title">Zora Plus Kft</h3>
+                      <p class="work-card-desc">
+                        Faipari és megmunkálási vállalkozás erős, megbízható online jelenléte.
+                      </p>
+                    </div>
+                    <span class="work-card-cta">Megnyitás</span>
+                  </div>
+                </a>
+              </article>
+
+              <article class="work-card" data-card="HolziMax">
+                <a
+                  href="https://holzimaxkft.hu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="HolziMax Kft referencia megnyitása"
+                  class="work-card-link"
+                >
+                  <div class="work-card-image-wrap">
+                    <img
+                      src="munkak/holzimaxkft.png"
+                      alt="HolziMax Kft referencia"
+                      class="work-card-img"
+                    />
+                    <div class="work-card-overlay" aria-hidden="true"></div>
+                  </div>
+                  <div class="work-card-body">
+                    <div>
+                      <h3 class="work-card-title">HolziMax Kft</h3>
+                      <p class="work-card-desc">
+                        Építőanyag és tűzifa profilhoz illesztett informatív, konverzióra épített weboldal.
+                      </p>
+                    </div>
+                    <span class="work-card-cta">Megnyitás</span>
+                  </div>
+                </a>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="section services-section">
+          <div class="section-inner">
+            <h2 class="section-title services-heading">
+              Van egy ötleted?<br />
+              <span class="text-primary"> Mi kódba öntjük.</span>
+            </h2>
+            <p class="section-subtitle services-subtitle">
+              Teljeskörű szolgáltatás az első ötlettől a folyamatos karbantartásig.
+            </p>
+          </div>
+
+          <div class="section-inner services-grid">
+            <div class="service-card">
+              <div class="service-number" aria-hidden="true">01</div>
+              <div class="service-content">
+                <h3 class="service-title">Design</h3>
+                <p class="service-desc">
+                  Felhasználó-központú, modern UI/UX tervezés, amely a te márkádra szabva kelt életre.
+                </p>
+              </div>
+              <div class="service-bar" aria-hidden="true"></div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-number" aria-hidden="true">02</div>
+              <div class="service-content">
+                <h3 class="service-title">Fejlesztés</h3>
+                <p class="service-desc">
+                  React, TypeScript és egyéb cutting-edge technológiák használata a gyors, biztonságos oldalakért.
+                </p>
+              </div>
+              <div class="service-bar" aria-hidden="true"></div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-number" aria-hidden="true">03</div>
+              <div class="service-content">
+                <h3 class="service-title">Optimalizálás</h3>
+                <p class="service-desc">
+                  SEO, teljesítmény-finomhangolás és analitika, hogy a weboldalad ne csak szép, de hatékony is legyen.
+                </p>
+              </div>
+              <div class="service-bar" aria-hidden="true"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section contact-section">
+          <div class="section-inner contact-inner">
+            <h2 class="section-title">
+              Beszéljünk a <span class="text-primary">projektedről</span>
+            </h2>
+            <p class="section-subtitle">
+              Írj nekünk és 24 órán belül visszajelzünk egy konkrét, létszámolható következő lépéssel.
+            </p>
+            <a
+              href="mailto:chat@grafibee.hu"
+              class="contact-email-link"
+            >
+              chat@grafibee.hu
+            </a>
+          </div>
+        </section>
+
+      </div><!-- /page-home -->
+
+      <!-- ---- PRIVACY PAGE ---- -->
+      <div id="page-adatkezelesi" hidden>
+        <section class="legal-section">
+          <div class="legal-card">
+            <h1 class="legal-title">Adatkezelési tájékoztató</h1>
+
+            <p class="legal-subtitle">Grafibee – Garbai Zoltán e.v.</p>
+
+            <p class="legal-text">
+              Ez a tájékoztató összefoglalja, hogy a Grafibee (Garbai Zoltán e.v.) miként kezeli a
+              személyes adatokat a weboldal látogatása, illetve az üzleti kapcsolattartás során.
+            </p>
+
+            <div class="legal-body">
+
+              <div class="legal-block">
+                <h2 class="legal-h2">1. Az adatkezelő adatai</h2>
+                <ul class="legal-list">
+                  <li><span class="legal-label">Név:</span> Garbai Zoltán e.v.</li>
+                  <li><span class="legal-label">E-mail cím:</span> zoltan.garbai@grafibee.hu</li>
+                  <li><span class="legal-label">Székhely:</span> 9012 Győr, Cseresznyés utca 2.</li>
+                  <li><span class="legal-label">Adószám:</span> 42976954-1-28</li>
+                </ul>
+              </div>
+
+              <div class="legal-block">
+                <h2 class="legal-h2">2. Kezelt adatok köre és célja</h2>
+
+                <div class="legal-subsection">
+                  <h3 class="legal-h3">A. Weboldal látogatása (Sütik / Cookies)</h3>
+                  <p class="legal-text">
+                    A honlap a Google Analytics szolgáltatást használja látogatottsági statisztikák
+                    készítéséhez. Ez segít nekünk megérteni, hogyan használják a látogatók az oldalt.
+                  </p>
+                  <ul class="legal-list">
+                    <li><span class="legal-label">Kezelt adat:</span> Anonimizált IP-cím, a látogatás időpontja, megtekintett oldalak.</li>
+                    <li><span class="legal-label">Jogalap:</span> Az Ön hozzájárulása (a süti-sáv elfogadásával).</li>
+                    <li><span class="legal-label">Időtartam:</span> A Google Analytics beállításai szerinti időtartam.</li>
+                  </ul>
+                </div>
+
+                <div class="legal-subsection">
+                  <h3 class="legal-h3">B. Kapcsolattartás és szerződéskötés</h3>
+                  <p class="legal-text">
+                    Mivel a weboldalon nincs közvetlen üzenetküldő űrlap, az adatkezelés akkor kezdődik,
+                    amikor Ön e-mailben vagy telefonon megkeres minket.
+                  </p>
+                  <ul class="legal-list">
+                    <li><span class="legal-label">Kezelt adatok:</span> Név, e-mail cím, telefonszám, számlázási adatok (szerződés esetén).</li>
+                    <li><span class="legal-label">Cél:</span> Ajánlatadás, szerződés teljesítése, üzleti kommunikáció.</li>
+                    <li><span class="legal-label">Jogalap:</span> Szerződés előkészítése vagy teljesítése.</li>
+                  </ul>
+                </div>
+
+                <div class="legal-subsection">
+                  <h3 class="legal-h3">C. Marketing célú megkeresések</h3>
+                  <p class="legal-text">
+                    Amennyiben korábban már kapcsolatban álltunk üzleti célból, a jövőben küldhetünk Önnek
+                    releváns szakmai híreket vagy ajánlatokat.
+                  </p>
+                  <p class="legal-text">
+                    <span class="legal-label">Jogalap:</span> Jogos érdek. Önnek bármikor joga van tiltakozni ezen megkeresések ellen.
+                  </p>
+                </div>
+              </div>
+
+              <div class="legal-block">
+                <h2 class="legal-h2">3. Adatfeldolgozók és adattovábbítás</h2>
+                <p class="legal-text">
+                  Az adatokat bizalmasan kezeljük, azokat harmadik félnek nem adjuk el. Az alábbi szolgáltatókat vesszük igénybe:
+                </p>
+                <ul class="legal-list">
+                  <li>NAV Online Számlázó: A számlázási kötelezettség teljesítéséhez.</li>
+                  <li>Tárhelyszolgáltató: Websupport Magyarország Kft.</li>
+                  <li>Google LLC: Az Analytics szolgáltatás révén (statisztikai adatok).</li>
+                </ul>
+              </div>
+
+              <div class="legal-block">
+                <h2 class="legal-h2">4. Az adatkezelés időtartama</h2>
+                <ul class="legal-list">
+                  <li><span class="legal-label">Üzleti levelezés:</span> A kapcsolat fennállásáig, vagy a szerződés megszűnésétől számított 5 évig (elévülési idő).</li>
+                  <li><span class="legal-label">Számviteli bizonylatok:</span> A törvényi előírásoknak megfelelően 8 évig (a számlázási adatok esetében).</li>
+                </ul>
+              </div>
+
+              <div class="legal-block">
+                <h2 class="legal-h2">5. Az Ön jogai</h2>
+                <p class="legal-text">Ön bármikor kérheti:</p>
+                <ul class="legal-list">
+                  <li>Tájékoztatását személyes adatai kezeléséről.</li>
+                  <li>Adatainak helyesbítését vagy törlését (a jogszabályi kereteken belül).</li>
+                  <li>Az adatkezelés korlátozását vagy az adathordozhatóságot.</li>
+                </ul>
+                <p class="legal-text">
+                  Kérelmét a <span class="legal-label">zoltan.garbai@grafibee.hu</span> e-mail címen nyújthatja be.
+                  Jogérvényesítési lehetőségeivel a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH) is fordulhat.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </div><!-- /page-adatkezelesi -->
+
+      <!-- ---- IMPRESSZUM PAGE ---- -->
+      <div id="page-impresszum" hidden>
+        <section class="legal-section">
+          <div class="legal-card">
+            <h1 class="legal-title">Impresszum</h1>
+            <div class="impresszum-body">
+              <p>Grafibee</p>
+              <ul class="legal-list impresszum-list">
+                <li><span class="legal-label">Név:</span> Garbai Zoltán e.v.</li>
+                <li><span class="legal-label">Székhely:</span> 9012 Győr, Cseresznyés utca 2.</li>
+                <li><span class="legal-label">E-mail:</span> zoltan.garbai@grafibee.hu</li>
+                <li><span class="legal-label">Adószám:</span> 42976954-1-28</li>
+              </ul>
+              <p>Garbai Zoltán egyéni vállalkozóként működő szolgáltató.</p>
+            </div>
+          </div>
+        </section>
+      </div><!-- /page-impresszum -->
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="footer-copy">
+          &copy; <span id="footer-year"></span> grafibee. Minden jog fenntartva.
+        </div>
+        <div class="footer-links">
+          <a href="/adatkezelesi-tajekoztato" class="footer-link js-nav" data-href="/adatkezelesi-tajekoztato">
+            Adatvédelem
+          </a>
+          <a href="/impresszum" class="footer-link js-nav" data-href="/impresszum">
+            Impresszum
+          </a>
+          <button type="button" class="footer-link" id="btn-open-cookie-settings">
+            Sütibeállítások
+          </button>
+          <a href="mailto:chat@grafibee.hu" class="footer-link">
+            chat@grafibee.hu
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================== COOKIE BANNER ===================== -->
+    <div id="cookie-banner" class="cookie-banner-wrap" hidden>
+      <section
+        role="dialog"
+        aria-label="Sütibeállítások"
+        class="cookie-banner"
+      >
+        <div class="cookie-banner-content">
+          <h2 class="cookie-title">Sütibeállítások</h2>
+          <p class="cookie-text">
+            A weboldal működéséhez szükséges sütiket mindig használjuk. Elemzési (Google Analytics) sütiket csak az Ön
+            hozzájárulásával aktiválunk, így megfelelünk az EU GDPR és ePrivacy elvárásoknak.
+          </p>
+          <p class="cookie-text">
+            A döntését bármikor módosíthatja a láblécben található "Sütibeállítások" gombbal.
+          </p>
+
+          <div class="cookie-actions">
+            <button
+              type="button"
+              id="btn-cookie-privacy"
+              class="cookie-privacy-link"
+            >
+              Adatkezelési tájékoztató megnyitása
+            </button>
+
+            <div class="cookie-buttons">
+              <button type="button" id="btn-reject-cookies" class="btn-cookie-reject">
+                Csak szükséges sütik
+              </button>
+              <button type="button" id="btn-accept-cookies" class="btn-cookie-accept">
+                Összes elfogadása
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

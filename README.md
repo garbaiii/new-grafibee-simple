@@ -1,75 +1,61 @@
-# React + TypeScript + Vite
+# grafibee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Static HTML/CSS/JavaScript website for Grafibee.
 
-Currently, two official plugins are available:
+No build step required — open `index.html` directly in a browser, or use a
+minimal local server for proper client-side routing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Running locally
 
-## React Compiler
+### Option A – open directly
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Just double-click `index.html` or open it in your browser with
+`File → Open File`.
 
-Note: This will impact Vite dev & build performances.
+> **Note:** Client-side navigation to `/adatkezelesi-tajekoztato` and
+> `/impresszum` requires serving the files over HTTP.  All other functionality
+> (home page, carousel, cookie banner, hash navigation) works with `file://`.
 
-## Expanding the ESLint configuration
+### Option B – local HTTP server (recommended)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Any static-file server will do.  A few one-liners:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Node.js (npx, no install needed)
+npx serve .
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Python 3
+python3 -m http.server 3000
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# PHP
+php -S localhost:3000
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open <http://localhost:3000> in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+├── index.html        Main HTML file (all pages / sections)
+├── style.css         Human-readable CSS (no Tailwind, no minification)
+├── script.js         Vanilla JS (routing, carousel, cookie consent, …)
+├── public/
+│   ├── favicon.svg
+│   └── grafibee_logo.svg
+└── munkak/
+    ├── autoluce.png
+    ├── zorapluskft.png
+    └── holzimaxkft.png
+```
+
+## Pages
+
+| URL                              | Description              |
+|----------------------------------|--------------------------|
+| `/`                              | Home (Hero, Works, Services, Contact) |
+| `/adatkezelesi-tajekoztato`      | Privacy policy           |
+| `/impresszum`                    | Impresszum               |
+
+Hash links (`/#work`, `/#services`, `/#contact`) scroll to the matching
+section on the home page.
+
