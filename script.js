@@ -366,8 +366,7 @@ document.getElementById('btn-open-cookie-settings').addEventListener('click', fu
 
 document.getElementById('btn-cookie-privacy').addEventListener('click', function () {
   navigateTo('/adatkezelesi-tajekoztato');
-  // Optionally keep the banner open; the React version did navigate away and kept it open.
-  // We'll hide it so the user can read the page unobstructed.
+  // Navigate away and hide the banner so the user can read the privacy page unobstructed.
   cookieBanner.hidden = true;
 });
 
