@@ -64,10 +64,24 @@ document.addEventListener('click', function (event) {
   if (!link) return;
   event.preventDefault();
   const href = link.dataset.href || link.getAttribute('href');
-  if (href) {
-    closeMobileMenu();
-    navigateTo(href);
+  if (!href) return;
+
+  closeMobileMenu();
+
+  // If it's a hash-anchor link and we're already on the home page,
+  // smooth-scroll directly instead of going through the router
+  // (the router would scroll to top first, which is jarring).
+  const hashMatch = href.match(/^(?:\/)?#(.+)$/);
+  if (hashMatch && normalizePath(window.location.pathname) === '/') {
+    const targetEl = document.getElementById(hashMatch[1]);
+    if (targetEl) {
+      window.history.pushState({}, '', '/#' + hashMatch[1]);
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
   }
+
+  navigateTo(href);
 });
 
 /* ──────────────────────────────────────────────────────────────
